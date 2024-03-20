@@ -1,0 +1,15 @@
+[package]
+name = "pool"
+version = "1.0.0"
+authors = []
+
+[addresses]
+Pool = "4b2f67fac347b8409dbcc930308ac61a2b044e5ce03641bb5e34d7e24e569767"
+[dev-addresses]
+
+[dependencies.AptosFramework]
+git = "https://github.com/aptos-labs/aptos-core.git"
+rev = "mainnet"
+subdir = "aptos-move/framework/aptos-framework"
+
+[dev-dependencies]
