@@ -7,8 +7,14 @@ import {
     useWallet,
     InputTransactionData,
 } from "@aptos-labs/wallet-adapter-react";
+// const envNetwork = process.env.APTOS_NETWORK;
+// const networkName = envNetwork ? NetworkToNetworkName[envNetwork] || Network.TESTNET : Network.TESTNET;
+// const APTOS_NETWORK: Network = networkName;
+
+
 const aptosConfig = new AptosConfig({ network: Network.TESTNET });
 const aptos = new Aptos(aptosConfig);
+
 export const moduleAddress  ="0x286a47b861c72b5ed2a46b5dc4d78ccbd3053a645c837742c586f97ed8992f0e";
 interface AccountInfo {
     address: string;
@@ -72,16 +78,24 @@ function App() {
             console.log('Button clicked');
 
             if (!account) return;
+            if (!link.includes("https") && !link.includes("ipfs")) {
+                console.log('Invalid link. Minting is only allowed for links starting with "https" or "ipfs".');
+                alert('Invalid link. \nMinting is only allowed for links starting with "https" or "ipfs".');
+                return;
 
+
+            }
             const transaction: InputTransactionData = {
-                data: {
-                    function: `${moduleAddress}::dapp::mint_single_collection`,
-                    functionArguments: [link]
-                }
-            };
+                  data: {
+                     function: `${moduleAddress}::dapp::mint_single_collection`,
+                     functionArguments: [link]
+                    }
+                };
+                const response = await signAndSubmitTransaction(transaction);
+                await aptos.waitForTransaction({ transactionHash: response.hash });
+            alert('Mint Success.');
 
-            const response = await signAndSubmitTransaction(transaction);
-            await aptos.waitForTransaction({ transactionHash: response.hash });
+
         } catch (error) {
             if ((error as any).code === 'USER_REJECTED_REQUEST') {
                 console.log('User rejected wallet connection.');// 将此消息记录为信息
@@ -173,6 +187,7 @@ function App() {
             setPreviewLink('');
         } catch (error: any) {
             setAccountHasList(false);
+            setPreviewLink('');
             console.error("Minting failed:", error);
         }
     }
@@ -233,7 +248,7 @@ function App() {
           </header>
 
           <header className="App-button2">
-              <button onClick={Mint_single_collection}>Mint</button>
+              <button onClick={handleButtonClick}>Mint</button>
           </header>
           <header className="App-rule">
               <p>1.each mint , mint 1 NFT</p>
