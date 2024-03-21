@@ -1,0 +1,15 @@
+[package]
+name = "my-first-dapp"
+version = "1.0.0"
+authors = []
+
+[addresses]
+todolist_addr = '24a31a3ce511f3344d7cd3b2007b743e36061074a1a983ec174a090fae6a3af9'
+[dev-addresses]
+
+[dependencies.AptosFramework]
+git = "https://github.com/aptos-labs/aptos-core.git"
+rev = "mainnet"
+subdir = "aptos-move/framework/aptos-framework"
+
+[dev-dependencies]

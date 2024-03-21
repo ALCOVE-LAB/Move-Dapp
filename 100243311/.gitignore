@@ -5,7 +5,7 @@
 /.pnp
 .pnp.js
 /move/.aptos
-/move/Move.toml
+
 /client/public/robots.txt
 /client/README.md
 
