@@ -1,0 +1,21 @@
+[package]
+name = "nftmarket"
+version = "1.0.0"
+authors = []
+
+[addresses]
+nftmarket = "0x8b256cbe708582fd2deeb0638e286311242b9f8fc386bce8799a24aa9082a271"
+
+[dev-addresses]
+
+[dependencies.AptosTokenObjects]
+git = "https://github.com/aptos-labs/aptos-core.git"
+rev = "mainnet"
+subdir = "aptos-move/framework/aptos-token-objects"
+
+[dependencies.AptosFramework]
+git = "https://github.com/aptos-labs/aptos-core.git"
+rev = "mainnet"
+subdir = "aptos-move/framework/aptos-framework"
+
+[dev-dependencies]
