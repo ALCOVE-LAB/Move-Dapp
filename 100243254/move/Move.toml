@@ -1,0 +1,21 @@
+[package]
+name = "aptos101_nft"
+version = "1.0.0"
+authors = []
+
+[addresses]
+pet_nft= "15640bcda2bf5c35be71a6d0481d37d8151885dbfa4ca56cf2f4717cda4bdba0"
+
+[dev-addresses]
+
+[dependencies.AptosFramework]
+git = "https://github.com/aptos-labs/aptos-core.git"
+rev = "mainnet"
+subdir = "aptos-move/framework/aptos-framework"
+
+[dependencies.AptosTokenObjects]
+git = "https://github.com/aptos-labs/aptos-core.git"
+rev = "mainnet"
+subdir = "aptos-move/framework/aptos-token-objects"
+
+[dev-dependencies]
