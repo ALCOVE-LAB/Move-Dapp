@@ -1,0 +1,16 @@
+[package]
+name = "notebook-on-aptos"
+version = "1.0.0"
+authors = []
+
+[addresses]
+notebook_addr='a85172e8c0f2125ca6b11b2774b45f3c39540c2b799583eb6771ae29c7ef2939'
+
+[dev-addresses]
+
+[dependencies.AptosFramework]
+git = "https://github.com/aptos-labs/aptos-core.git"
+rev = "mainnet"
+subdir = "aptos-move/framework/aptos-framework"
+
+[dev-dependencies]
