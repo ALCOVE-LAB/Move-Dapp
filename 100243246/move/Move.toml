@@ -1,0 +1,10 @@
+[package]
+name = "nft"
+version = "1.0.0"
+upgrade_policy = "compatible"
+
+[addresses]
+admin = "0xc789b9c13c69b0b34173512ac8cbfe8c76768a3246cda01c38d5d72f18957ad3"
+
+[dependencies]
+AptosTokenObjects = { git = "https://github.com/aptos-labs/aptos-core.git", subdir = "aptos-move/framework/aptos-token-objects/", rev = "main" }
