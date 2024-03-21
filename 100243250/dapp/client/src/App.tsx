@@ -7,10 +7,8 @@ import {
     useWallet,
     InputTransactionData,
 } from "@aptos-labs/wallet-adapter-react";
-const envNetwork = process.env.APTOS_NETWORK;
-const networkName = envNetwork ? NetworkToNetworkName[envNetwork] || Network.TESTNET : Network.TESTNET;
-const APTOS_NETWORK: Network = networkName;
-export const aptos = new Aptos();
+const aptosConfig = new AptosConfig({ network: Network.TESTNET });
+const aptos = new Aptos(aptosConfig);
 export const moduleAddress  ="0x286a47b861c72b5ed2a46b5dc4d78ccbd3053a645c837742c586f97ed8992f0e";
 interface AccountInfo {
     address: string;
