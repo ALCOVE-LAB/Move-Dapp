@@ -41,8 +41,12 @@ const onWriteDescription = handleInputChange(setnewnftdescription);
     // build a newTaskToPush objct into our local state
     const newTaskToPush = {
       address: account.address,
-      completed: false,
-      content: newTask,
+      completed: false,//应该删除
+
+      name: newnftname,
+      link:newnftlink,
+      description:newnftdescription,
+
     };
 
     try {
@@ -51,6 +55,8 @@ const onWriteDescription = handleInputChange(setnewnftdescription);
         type: "entry_function_payload",
         function: `${ABI.address}::todolist::create_task`,
         type_arguments: [],
+        //TODO
+        //明天看看这里应该用什么
         arguments: [newTask],
       });
       // wait for transaction
@@ -64,7 +70,10 @@ const onWriteDescription = handleInputChange(setnewnftdescription);
       // Set state
       setTasks(newTasks);
       // clear input text
-      setNewTask("");
+      setnewnftname("");
+      setnewnftlink("");
+      setnewnftdescription("");
+      
     } catch (error: any) {
       console.log("error", error);
     } finally {
@@ -81,56 +90,64 @@ const onWriteDescription = handleInputChange(setnewnftdescription);
 
       <Input.Group compact>
         <Input
-          onChange={(event) => onWriteTask(event)}
+          onChange={(event) => onWriteLink(event)}
           style={{ width: "calc(100% - 60px)" }}
           placeholder="Set NFT's image"
           size="large"
           value={newnftlink}
         />
-        <Button
+        {/* <Button
           onClick={onTaskAdded}
           type="primary"
           style={{ height: "40px", backgroundColor: "#3f67ff" }}
         >
           Add
-        </Button>
+        </Button> */}
       </Input.Group>
       <p> </p>
 
       <Input.Group compact>
         <Input
-          onChange={(event) => onWriteTask(event)}
+          onChange={(event) => onWriteName(event)}
           style={{ width: "calc(100% - 60px)" }}
           placeholder="Set NFT's name"
           size="large"
           value={newnftname}
         />
-        <Button
+        {/* <Button
           onClick={onTaskAdded}
           type="primary"
           style={{ height: "40px", backgroundColor: "#3f67ff" }}
         >
           Add
-        </Button>
+        </Button> */}
 
       </Input.Group>
       <p> </p>
       <Input.Group compact>
         <Input
-          onChange={(event) => onWriteTask(event)}
+          onChange={(event) => onWriteDescription(event)}
           style={{ width: "calc(100% - 60px)" }}
           placeholder="Set NFT's description"
           size="large"
           value={newnftdescription}
         />
-        <Button
+        {/* <Button
+          onClick={onTaskAdded}
+          type="primary"
+          style={{ height: "40px", backgroundColor: "#3f67ff" }}
+        >
+          Add
+        </Button> */}
+      </Input.Group>
+      
+      <Button
           onClick={onTaskAdded}
           type="primary"
           style={{ height: "40px", backgroundColor: "#3f67ff" }}
         >
           Add
         </Button>
-      </Input.Group>
     </Col>
   );
 }

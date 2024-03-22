@@ -1,5 +1,7 @@
 export type Task = {
   address: string;
   completed: boolean;
-  content: string;
+  name: string,
+  link:string,
+  description:string,
 };
