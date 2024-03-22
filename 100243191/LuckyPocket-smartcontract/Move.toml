@@ -1,0 +1,16 @@
+[package]
+name = "LuckyPocket"
+version = "1.0.0"
+authors = []
+
+[addresses]
+lucky_pocket = "0xe5f0f7b013d61192fd53c20b4278781ee447562e01e67dae400132f69df014e1"
+
+[dev-addresses]
+
+[dependencies.AptosFramework]
+git = "https://github.com/aptos-labs/aptos-core.git"
+rev = "devnet"
+subdir = "aptos-move/framework/aptos-framework"
+
+[dev-dependencies]
