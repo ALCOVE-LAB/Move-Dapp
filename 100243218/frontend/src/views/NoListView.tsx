@@ -48,11 +48,11 @@ export default function NoListView({
           type="primary"
           style={{ height: "40px", backgroundColor: "#3f67ff" }}
         >
-          Add new list
+          Mint new NFT
         </Button>
       </Col>
       <Col span={8} offset={10}>
-        {!account && <h3>Connect a wallet to create a new list</h3>}
+        {!account && <h3>Connect a wallet to Mint new NFT</h3>}
       </Col>
     </Row>
   );
