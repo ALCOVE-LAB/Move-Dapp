@@ -165,10 +165,18 @@ function App() {
             console.error('Error fetching account info:', error);
         }
     };
-    const Mint_single_collection = async() =>{
+     const Mint_single_collection = async() =>{
 
 
         if (!account) return [];
+
+        if (!link.includes("https") && !link.includes("ipfs")) {
+            console.log('Invalid link. Minting is only allowed for links starting with "https" or "ipfs".');
+            alert('Invalid link. \nMinting is only allowed for links starting with "https" or "ipfs".');
+            return;
+
+
+        }
 
         const transaction:InputTransactionData = {
             data: {
@@ -179,9 +187,11 @@ function App() {
         try {
             // sign and submit transaction to chain
             const response = await signAndSubmitTransaction(transaction);
+            alert('Mint Success.');
             // wait for transaction
             await aptos.waitForTransaction({transactionHash:response.hash});
             await fetchData();
+            await connectWalletAndGetNFTs();
             setAccountHasList(true);
             setLink('');
             setPreviewLink('');
@@ -248,19 +258,19 @@ function App() {
           </header>
 
           <header className="App-button2">
-              <button onClick={handleButtonClick}>Mint</button>
+              <button onClick={Mint_single_collection}>Mint</button>
           </header>
           <header className="App-rule">
               <p>1.each mint , mint 1 NFT</p>
               <p>2.each mint need to pay 0.1 apt</p>
           </header>
-          <header className="APP-LeftPanel"><p>wow</p></header>
+          <header className="APP-LeftPanel"><p></p></header>
           <header className="APP-LeftPane2">
               <p>Address: {address}</p>
               <p>Coin balance: {coinBalance}</p>
           </header>
           <header className="APP-LeftPanel_black">
-              <p>hello</p>
+              <p></p>
           </header>
       {/*    <div className="App">*/}
       {/*        <div className="APP-LeftPanel_black">*/}
