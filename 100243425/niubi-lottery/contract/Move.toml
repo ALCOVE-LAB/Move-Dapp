@@ -1,0 +1,22 @@
+[package]
+name = "niubi-lottery"
+version = "1.0.0"
+authors = []
+
+[addresses]
+lottery_addr="0x3c12cf8d384c424aff2249af045bb7fa9d127f0a73d7f8593911e8d25960ba4c"
+
+[dev-addresses]
+
+[dependencies.AptosFramework]
+git = "https://github.com/aptos-labs/aptos-core.git"
+rev = "devnet"
+subdir = "aptos-move/framework/aptos-framework"
+
+[dependencies.AptosTokenObjects]
+git = "https://github.com/aptos-labs/aptos-core.git"
+rev = "devnet"
+subdir = "aptos-move/framework/aptos-token-objects"
+
+
+[dev-dependencies]
