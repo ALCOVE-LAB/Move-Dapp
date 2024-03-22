@@ -4,3 +4,5 @@
 2. Add a new dir with your student No. as dir name
 3. Put your Dapp code into this dir
 4. Create a new Pull Request to this repo
+
+PS: Please do not include any personal config files or building artifacts in the pull request

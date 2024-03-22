@@ -1,0 +1,166 @@
+.App {
+  text-align: center;
+}
+
+/*.App-logo {*/
+/*  height: 20vmin;*/
+/*  pointer-events: none;*/
+
+/*}*/
+.App-logo {
+  height: 15vmin;
+  pointer-events: none;
+  position: absolute;
+  top: 6vmin; /* 將 .App-logo 元素移動到中間上方 */
+  transform: translateX(-50%); /* 將 .App-logo 元素水平居中 */
+}
+.App-text {
+  background-color: rgba(243, 240, 231, 0.67);
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(5px + 2vmin);
+  color: black;
+}
+.App-button {
+  position: absolute;
+  top: 8vmin; /* 與頂部的距離 */
+  right: 5vmin; /* 與右側的距離 */
+  background-color: #be5a68; /* 按鈕背景顏色 */
+  color: #101010; /* 按鈕文字顏色 */
+  padding: 10px 20px; /* 按鈕內邊距 */
+  border: none; /* 去除按鈕邊框 */
+  border-radius: 5px; /* 按鈕圓角 */
+  cursor: pointer; /* 鼠標指針樣式 */
+  font-size: 20px; /* 按鈕文字大小 */
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 30s linear;
+  }
+}
+
+.App-header {
+  background-color: rgba(243, 240, 231, 0.67);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(5px + 2vmin);
+  color: black;
+}
+.App-CenteredContainer {
+  /* 將容器置於頁面中央 */
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* 添加框的樣式 */
+  border: 2px solid #61dafb; /* 框的邊框樣式 */
+  border-radius: 10px; /* 框的圓角 */
+  padding: 20px; /* 框的內邊距 */
+  width: 400px;
+  height: 200px;
+}
+.App-CenteredContainer2 {
+  /* 將容器置於頁面中央 */
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* 添加框的樣式 */
+  border: 2px solid #101010; /* 框的邊框樣式 */
+  border-radius: 10px; /* 框的圓角 */
+  padding: 20px; /* 框的內邊距 */
+  width: 400px;
+  height: 200px;
+}
+.App-rule{
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.App-button2{
+  position: absolute;
+  top: 70.8%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+}
+.APP-LeftPanel {position: absolute;
+  top: 20%;
+  left: 70%;
+  width: 350px;
+  background-color: rgba(243, 240, 231, 0.67);
+  padding: 20px;
+  border: 2px solid #101010; /* 框的邊框樣式 */
+  border-radius: 10px; /* 框的圓角 */
+  padding: 20px; /* 框的內邊距 */
+  height: 648px;
+}
+.APP-LeftPanel_black {
+  position: absolute;
+  top: 45%;
+  left: 71.5%;
+  width: 350px;
+  background-color: rgba(243, 240, 231, 0.67);
+  padding: 20px;
+  border: 2px solid #101010; /* 框的邊框樣式 */
+  border-radius: 10px; /* 框的圓角 */
+  padding: 20px; /* 框的內邊距 */
+  height: 400px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 将框框分成三列 */
+  gap: 10px;
+}
+.nft-item {
+  background-color: #ffffff; /* 每个格子的背景颜色 */
+  border: 1px solid #101010; /* 每个格子的边框 */
+  border-radius: 5px; /* 每个格子的圆角 */
+  padding: 10px; /* 每个格子的内边距 */
+  text-align: center; /* 文字居中 */
+}
+.APP-LeftPane2 {position: absolute;
+  top: 22.5%;
+  left: 71.5%;
+  width: 310px;
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
+  border: 2px solid #101010; /* 框的邊框樣式 */
+  border-radius: 10px; /* 框的圓角 */
+  padding: 20px; /* 框的內邊距 */
+  height: 100px;
+}
+.App-button3{
+  position: absolute;
+  top: 80%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+}
+
+.App-Preview {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%; /* 最大寬度 */
+  max-height: 100px; /* 最大高度 */
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

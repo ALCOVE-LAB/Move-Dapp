@@ -1,0 +1,22 @@
+[package]
+name = "dapp"
+version = "1.0.0"
+authors = []
+
+[addresses]
+dapp = '0x286a47b861c72b5ed2a46b5dc4d78ccbd3053a645c837742c586f97ed8992f0e'
+[dev-addresses]
+
+[dependencies.AptosFramework]
+git = "https://github.com/aptos-labs/aptos-core.git"
+rev = "mainnet"
+subdir = "aptos-move/framework/aptos-framework"
+
+[dependencies.AptosTokenObjects]
+git = "https://github.com/aptos-labs/aptos-core.git"
+#git = "https://gitee.com/WGB5445/aptos-core.git"
+rev = "mainnet"
+subdir = "aptos-move/framework/aptos-token-objects"
+
+
+[dev-dependencies]
