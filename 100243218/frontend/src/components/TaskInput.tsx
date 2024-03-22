@@ -5,6 +5,7 @@ import { ABI } from "../abi";
 import { useAlert } from "../hooks/alertProvider";
 import { provider } from "../utils/consts";
 import { Task } from "../utils/types";
+import ImageUploader from "./ImageUploader"
 
 type TaskInputProps = {
   setTransactionInProgress: React.Dispatch<React.SetStateAction<boolean>>;
@@ -17,14 +18,19 @@ export default function TaskInput({
   tasks,
   setTasks,
 }: TaskInputProps) {
-  const [newTask, setNewTask] = useState<string>("");
-  const { account, network, signAndSubmitTransaction } = useWallet();
-  const { setSuccessAlertHash } = useAlert();
+const [newnftname, setnewnftname] = useState("");
+const [newnftlink, setnewnftlink] = useState("");
+const [newnftdescription, setnewnftdescription] = useState("");
 
-  const onWriteTask = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    setNewTask(value);
-  };
+const { account, network, signAndSubmitTransaction } = useWallet();
+const { setSuccessAlertHash } = useAlert();
+
+const handleInputChange = (setter: React.Dispatch<React.SetStateAction<string>>) =>
+  (event: React.ChangeEvent<HTMLInputElement>) => setter(event.target.value);
+
+const onWriteName = handleInputChange(setnewnftname);
+const onWriteLink = handleInputChange(setnewnftlink);
+const onWriteDescription = handleInputChange(setnewnftdescription);
 
   const onTaskAdded = async () => {
     // check for connected account
@@ -67,14 +73,55 @@ export default function TaskInput({
   };
 
   return (
+    
+    //TODO
+    //把图片转化为base64文本
     <Col span={8} offset={8}>
+    {/* <ImageUploader/> */}
+
       <Input.Group compact>
         <Input
           onChange={(event) => onWriteTask(event)}
           style={{ width: "calc(100% - 60px)" }}
-          placeholder="Add a Task"
+          placeholder="Set NFT's image"
           size="large"
-          value={newTask}
+          value={newnftlink}
+        />
+        <Button
+          onClick={onTaskAdded}
+          type="primary"
+          style={{ height: "40px", backgroundColor: "#3f67ff" }}
+        >
+          Add
+        </Button>
+      </Input.Group>
+      <p> </p>
+
+      <Input.Group compact>
+        <Input
+          onChange={(event) => onWriteTask(event)}
+          style={{ width: "calc(100% - 60px)" }}
+          placeholder="Set NFT's name"
+          size="large"
+          value={newnftname}
+        />
+        <Button
+          onClick={onTaskAdded}
+          type="primary"
+          style={{ height: "40px", backgroundColor: "#3f67ff" }}
+        >
+          Add
+        </Button>
+
+      </Input.Group>
+      <p> </p>
+      <Input.Group compact>
+        <Input
+          onChange={(event) => onWriteTask(event)}
+          style={{ width: "calc(100% - 60px)" }}
+          placeholder="Set NFT's description"
+          size="large"
+          value={newnftdescription}
         />
         <Button
           onClick={onTaskAdded}

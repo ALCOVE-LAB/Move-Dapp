@@ -7,7 +7,7 @@ export default function Header() {
     <Layout>
       <Row align="middle">
         <Col span={10} offset={2}>
-          <h1>My todolist</h1>
+          <h1>Mint your own NFT</h1>
         </Col>
         <Col span={12} style={{ textAlign: "right", paddingRight: "200px" }}>
           <WalletSelector />
