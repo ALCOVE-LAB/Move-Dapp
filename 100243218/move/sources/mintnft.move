@@ -3,7 +3,6 @@ module oneclicknft::oneclicknft {
     use std::signer;
     use std::string;
     use std::string::String;
-    use aptos_std::string_utils;
     use aptos_framework::account;
     use aptos_framework::account::SignerCapability;
     use aptos_framework::event;
@@ -18,11 +17,11 @@ module oneclicknft::oneclicknft {
     // ERROR CODE
     const ERROR_NOWNER: u64 = 1;
 
-    const ResourceAccountSeed: vector<u8> = b"Rembrandt";
+    const ResourceAccountSeed: vector<u8> = b"ForFUN";
 
     const CollectionDescription: vector<u8> = b"cute girl";
 
-    const CollectionName: vector<u8> = b"cute";
+    const CollectionName: vector<u8> = b"oneclicknft";
 
     const CollectionURI: vector<u8> = b"https://pbs.twimg.com/media/GHkuGnIbsAAQOJD?format=jpg";
 
