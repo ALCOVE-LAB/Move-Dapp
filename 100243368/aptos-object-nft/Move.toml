@@ -1,10 +1,10 @@
 [package]
-name = "my_first_nft"
+name = "birds_nft"
 version = "1.0.0"
 authors = []
 
 [addresses]
-birds_nft = "0xab61910eb5eecc335bca4512ab3fc0d8b84cef3743f0a55c8b0a86e52375384b"
+birds_nft = "0xd4fe0ab916af86b1ecdc3dd2345c21d12b758aad6540e205178e9e3876285635"
 
 [dev-addresses]
 
