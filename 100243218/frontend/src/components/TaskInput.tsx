@@ -57,7 +57,7 @@ export default function TaskInput({
         type_arguments: [],
 
         //这里要和move合约中的参数相对应
-        arguments: [newnftname, newnftdescription, newnftlink],
+        arguments: [newnftname+" ", newnftdescription, newnftlink],
       });
       // wait for transaction
       await provider.waitForTransaction(response.hash);
