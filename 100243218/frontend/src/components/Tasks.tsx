@@ -70,18 +70,18 @@ export default function Tasks({
             <List.Item
               actions={[
                 <div>
-                  {task.completed ? (
+                  {/* {task.completed ? (
                     <Checkbox defaultChecked={true} disabled />
                   ) : (
                     <Checkbox
                       onChange={(event) => onCheckboxChange(event, idx)}
                     />
-                  )}
+                  )} */}
                 </div>,
               ]}
             >
               <List.Item.Meta
-                title={task.content}
+                title={task.name}
                 description={
                   <a
                     href={`https://explorer.aptoslabs.com/account/${task.address}/`}
