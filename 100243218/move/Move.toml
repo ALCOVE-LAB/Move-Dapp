@@ -1,9 +1,17 @@
 [package]
-name = 'my_todo_list'
+name = 'oneclicknft'
 version = '1.0.0'
-[dependencies.AptosFramework]
-git = 'https://github.com/aptos-labs/aptos-core.git'
-rev = 'main'
-subdir = 'aptos-move/framework/aptos-framework'
+
+#[dependencies.AptosFramework]
+#git = 'https://github.com/aptos-labs/aptos-core.git'
+#rev = 'main'
+#subdir = 'aptos-move/framework/aptos-framework'
+
 [addresses]
-todolist_addr='_'
+oneclicknft = "0x770381698147286b87c506c65c8e982e1f0199d071dba987a0daee8f79c663a7"
+
+
+[dependencies.AptosTokenObjects]
+git = "https://github.com/aptos-labs/aptos-core.git"
+rev = "mainnet"
+subdir = "aptos-move/framework/aptos-token-objects"
