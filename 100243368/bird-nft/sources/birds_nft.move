@@ -38,10 +38,7 @@ module birds_nft::birds_nft {
     struct CollectionRefsStore has key {
         mutator_ref: collection::MutatorRef
     }
-
-    // struct Content has key {
-    //     content: string::String
-    // }
+   
 
      struct NewBirdContent has key {
         content: string::String,
@@ -145,32 +142,13 @@ module birds_nft::birds_nft {
             string::utf8(b""),
         );
 
-        // let id = token::index<Token>(object::object_from_constructor_ref(&token_cref));
-        // string::append(&mut url, string_utils::to_string(&id));
-        // string::append(&mut url, string::utf8(b"address.png"));
-
-        // create token_mutator_ref
-        let token_mutator_ref = token::generate_mutator_ref(&token_cref);
-
-        token::set_uri(&token_mutator_ref, content);
-
-        let token_signer = object::generate_signer(&token_cref);      
-
    
+        let token_mutator_ref = token::generate_mutator_ref(&token_cref);
+        token::set_uri(&token_mutator_ref, content);
+        let token_signer = object::generate_signer(&token_cref);     
 
-        // if you want stop transfer ( must save transfer_ref
-        // let transfer_ref = object::generate_transfer_ref(&token_cref);
-        // object::disable_ungated_transfer(&transfer_ref);   
 
-        // move_to(
-        //     &token_signer,
-        //     Content {
-        //         content
-        //     }
-        // );  
-
-        let buysigner = signer::address_of(sender);
-        
+        let buysigner = signer::address_of(sender);        
 
         move_to(
             &token_signer,
@@ -181,42 +159,11 @@ module birds_nft::birds_nft {
             }
         );    
 
-
             object::transfer(
             resource_signer,
             object::object_from_constructor_ref<Token>(&token_cref),
             signer::address_of(sender),
         )
     }    
-
-    // entry fun set_content(
-    //     sender: &signer,
-    //     object: Object<Content>,
-    //     content: string::String
-    // ) acquires Content {
-    //     let old_content = borrow_content(signer::address_of(sender), object).content;
-    //     event::emit(
-    //         SetContentEvent {
-    //             owner: object::owner(object),
-    //             token_id: object::object_address(&object),
-    //             old_content,
-    //             new_content: content
-    //         }
-    //     );
-    //     borrow_mut_content(signer::address_of(sender), object).content = content;
-    // }
-
-    // inline fun borrow_content(owner: address, object: Object<Content>): &Content {
-    //     assert!(object::is_owner(object, owner), ERROR_NOWNER);
-    //     borrow_global<Content>(object::object_address(&object))
-    // }
-
-    // inline fun borrow_mut_content(owner: address, object: Object<Content>): &mut Content {
-    //     assert!(object::is_owner(object, owner), ERROR_NOWNER);
-    //     borrow_global_mut<Content>(object::object_address(&object))
-    // }
-
-
-
    
 }
