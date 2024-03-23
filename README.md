@@ -24,3 +24,5 @@ aptos move publish
 ## Start front end server
 1. cd 100243428/client &&  npm install
 2. npm start
+
+## Then you can play with the contract in the  devnet chain of Aptos
