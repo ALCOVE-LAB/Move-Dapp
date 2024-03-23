@@ -2,6 +2,7 @@ module oneclicknft::oneclicknft {
     use std::option;
     use std::signer;
     use std::string;
+    use std::string::String;
     use aptos_std::string_utils;
     use aptos_framework::account;
     use aptos_framework::account::SignerCapability;
@@ -18,18 +19,15 @@ module oneclicknft::oneclicknft {
     const ERROR_NOWNER: u64 = 1;
 
     const ResourceAccountSeed: vector<u8> = b"Rembrandt";
-    
-    //user's config
+
     const CollectionDescription: vector<u8> = b"cute girl";
 
     const CollectionName: vector<u8> = b"cute";
 
-    const CollectionURI: vector<u8> = b"https://twitter.com/asteroid1935SP";
-    
-    //user's config
+    const CollectionURI: vector<u8> = b"https://pbs.twimg.com/media/GHkuGnIbsAAQOJD?format=jpg";
+
     const TokenURI: vector<u8> = b"https://pbs.twimg.com/media/GHkuGnIbsAAQOJD?format=jpg";
-    
-    //user's config
+
     const TokenPrefix: vector<u8> = b"Girl #";
 
     struct ResourceCap has key {
@@ -47,30 +45,32 @@ module oneclicknft::oneclicknft {
         transfer_ref: option::Option<object::TransferRef>
     }
 
-    struct Content has key {
-        content: string::String
+    struct Content has key,store,drop {
+        name: string::String,
+        link: string::String,
+        description:string::String
     }
 
     #[event]
     struct MintEvent has drop, store {
         owner: address,
         token_id: address,
-        content: string::String
+        content: Content
     }
 
     #[event]
     struct SetContentEvent has drop, store {
         owner: address,
         token_id: address,
-        old_content: string::String,
-        new_content: string::String
+        old_content: Content,
+        new_content: Content
     }
 
     #[event]
     struct BurnEvent has drop, store {
         owner: address,
         token_id: address,
-        content: string::String
+        content: Content
     }
 
 
@@ -108,26 +108,21 @@ module oneclicknft::oneclicknft {
     }
 
 
-    entry public fun mint(sender: &signer, content: string::String) acquires ResourceCap {
+    entry public fun mint(sender: &signer, name:string::String,description: string::String,url:string::String) acquires ResourceCap {
         let resource_cap = &borrow_global<ResourceCap>(account::create_resource_address(&@oneclicknft, ResourceAccountSeed)).cap;
 
         let resource_signer = &account::create_signer_with_capability(
             resource_cap
         );
-        let url = string::utf8(TokenURI);
         let token_cref = token::create_numbered_token(
             resource_signer,
             string::utf8(CollectionName),
-            string::utf8(CollectionDescription),
-            string::utf8(TokenPrefix),
+            description,
+            name,
             string::utf8(b""),
             option::none(),
             string::utf8(b""),
         );
-
-        // let id = token::index<Token>(object::object_from_constructor_ref(&token_cref));
-        // string::append(&mut url, string_utils::to_string(&id));
-        // string::append(&mut url, string::utf8(b".png"));
 
         let token_signer = object::generate_signer(&token_cref);
 
@@ -158,15 +153,22 @@ module oneclicknft::oneclicknft {
         move_to(
             &token_signer,
             Content {
-                content
+                name,
+                link:url,
+                description
             }
         );
+
 
         event::emit(
             MintEvent {
                 owner: signer::address_of(sender),
                 token_id: object::address_from_constructor_ref(&token_cref),
-                content
+                content:Content{
+                    name,
+                    link:url,
+                    description
+                }
             }
         );
 
@@ -178,7 +180,7 @@ module oneclicknft::oneclicknft {
     }
 
 
-    entry fun burn(sender: &signer, object: Object<Content>) acquires TokenRefsStore {
+    entry fun burn(sender: &signer, object: Object<Content>) acquires TokenRefsStore, Content {
         assert!(object::is_owner(object, signer::address_of(sender)), ERROR_NOWNER);
         let TokenRefsStore {
             mutator_ref: _,
@@ -187,28 +189,24 @@ module oneclicknft::oneclicknft {
             transfer_ref: _
         } = move_from<TokenRefsStore>(object::object_address(&object));
 
+        let content = move_from<Content>(object::object_address(&object));
+
+        event::emit(
+            BurnEvent {
+                owner: object::owner(object),
+                token_id: object::object_address(&object),
+                content
+            }
+        );
 
         token::burn(burn_ref);
     }
 
-    entry fun set_content(sender: &signer, object: Object<Content>, content: string::String) acquires Content {
-        let old_content = borrow_content(signer::address_of(sender), object).content;
-        event::emit(
-            SetContentEvent {
-                owner: object::owner(object),
-                token_id: object::object_address(&object),
-                old_content,
-                new_content: content
-            }
-        );
-        borrow_mut_content(signer::address_of(sender), object).content = content;
-    }
-
-
 
     #[view]
-    public fun get_content(object: Object<Content>): string::String acquires Content {
-        borrow_global<Content>(object::object_address(&object)).content
+    public fun get_content(object: Object<Content>): Content acquires Content {
+        let Content{name,link,description}=borrow_global<Content>(object::object_address(&object));
+        Content{name:*name,link:*link,description:*description}
     }
 
     inline fun borrow_content(owner: address, object: Object<Content>): &Content {
@@ -226,3 +224,5 @@ module oneclicknft::oneclicknft {
         init_module(sender)
     }
 }
+
+
