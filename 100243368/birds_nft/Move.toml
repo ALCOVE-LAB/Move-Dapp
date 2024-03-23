@@ -1,0 +1,15 @@
+[package]
+name = "birds_nft"
+version = "1.0.0"
+authors = []
+
+[addresses]
+birds_nft="0x844145c6d74a7c60ff7c8496ec636af012b0ef7d4ace75fd69f1e906cda55f71"
+[dev-addresses]
+
+[dependencies.AptosTokenObjects]
+git = "https://github.com/aptos-labs/aptos-core.git"
+rev = "mainnet"
+subdir = "aptos-move/framework/aptos-token-objects"
+
+[dev-dependencies]
