@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Aptos Coin",
+    "symbol": "APT",
+    "official_symbol": "APT",
+    "coingecko_id": "aptos",
+    "decimals": 8,
+    "logo_url": "https://raw.githubusercontent.com/hippospace/aptos-coin-list/main/icons/APT.webp",
+    "project_url": "https://aptoslabs.com/",
+    "token_type": {
+      "type": "0x1::aptos_coin::AptosCoin",
+      "account_address": "0x1",
+      "module_name": "aptos_coin",
+      "struct_name": "AptosCoin"
+    },
+    "extensions": {
+      "data": []
+    }
+  },
+  {
+    "name": "LBTC",
+    "symbol": "LBTC",
+    "official_symbol": "LBTC",
+    "coingecko_id": "lbtc",
+    "decimals": 8,
+    "logo_url": "https://raw.githubusercontent.com/hippospace/aptos-coin-list/main/icons/APT.webp",
+    "project_url": "https://aptoslabs.com/",
+    "token_type": {
+      "type": "0xf802c76594af652ea0b571f6184c57dd8c95bbc89fc2798987f3808e6112c838::coins::LBTC",
+      "account_address": "0xf802c76594af652ea0b571f6184c57dd8c95bbc89fc2798987f3808e6112c838",
+      "module_name": "coins",
+      "struct_name": "LBTC"
+    },
+    "extensions": {
+      "data": []
+    }
+  },
+  {
+    "name": "LETH",
+    "symbol": "LETH",
+    "official_symbol": "LETHC",
+    "coingecko_id": "lbtc",
+    "decimals": 8,
+    "logo_url": "https://raw.githubusercontent.com/hippospace/aptos-coin-list/main/icons/APT.webp",
+    "project_url": "https://aptoslabs.com/",
+    "token_type": {
+      "type": "0xf802c76594af652ea0b571f6184c57dd8c95bbc89fc2798987f3808e6112c838::coins::LETH",
+      "account_address": "0xf802c76594af652ea0b571f6184c57dd8c95bbc89fc2798987f3808e6112c838",
+      "module_name": "coins",
+      "struct_name": "LETH"
+    },
+    "extensions": {
+      "data": []
+    }
+  },
+  {
+    "name": "LUSDC",
+    "symbol": "LUSDC",
+    "official_symbol": "LUSDC",
+    "coingecko_id": "lbtc",
+    "decimals": 8,
+    "logo_url": "https://raw.githubusercontent.com/hippospace/aptos-coin-list/main/icons/APT.webp",
+    "project_url": "https://aptoslabs.com/",
+    "token_type": {
+      "type": "0xf802c76594af652ea0b571f6184c57dd8c95bbc89fc2798987f3808e6112c838::coins::LUSDC",
+      "account_address": "0xf802c76594af652ea0b571f6184c57dd8c95bbc89fc2798987f3808e6112c838",
+      "module_name": "coins",
+      "struct_name": "LUSDC"
+    },
+    "extensions": {
+      "data": []
+    }
+  },
+  {
+    "name": "LUSDT",
+    "symbol": "LUSDT",
+    "official_symbol": "LUSDT",
+    "coingecko_id": "lbtc",
+    "decimals": 8,
+    "logo_url": "https://raw.githubusercontent.com/hippospace/aptos-coin-list/main/icons/APT.webp",
+    "project_url": "https://aptoslabs.com/",
+    "token_type": {
+      "type": "0xf802c76594af652ea0b571f6184c57dd8c95bbc89fc2798987f3808e6112c838::coins::LUSDT",
+      "account_address": "0xf802c76594af652ea0b571f6184c57dd8c95bbc89fc2798987f3808e6112c838",
+      "module_name": "coins",
+      "struct_name": "LUSDT"
+    },
+    "extensions": {
+      "data": []
+    }
+  }
+]
