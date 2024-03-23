@@ -1,0 +1,16 @@
+[package]
+name = "airdrop"
+version = "1.0.0"
+authors = []
+
+[addresses]
+airdrop = "56c39eb761c3b3dbe6df9c6a6f9769b716870169d6fc4a3877dbe72d584145ee"
+
+[dev-addresses]
+
+[dependencies.AptosFramework]
+git = "https://github.com/aptos-labs/aptos-core.git"
+rev = "mainnet"
+subdir = "aptos-move/framework/aptos-framework"
+
+[dev-dependencies]
