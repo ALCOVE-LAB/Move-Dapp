@@ -1,0 +1,22 @@
+[package]
+name = "mynft"
+version = "1.0.0"
+authors = []
+
+[addresses]
+myaddr = "eabbe35ac4b276d08f47a7c473fda75e7f1187c560ade1684f698af6cdb8367c"
+
+[dev-addresses]
+
+[dependencies.AptosFramework]
+git = "https://github.com/aptos-labs/aptos-core.git"
+rev = "mainnet"
+subdir = "aptos-move/framework/aptos-framework"
+
+
+[dependencies.AptosTokenObjects]
+git = "https://github.com/aptos-labs/aptos-core.git"
+rev = "mainnet"
+subdir = "aptos-move/framework/aptos-token-objects"
+
+[dev-dependencies]
