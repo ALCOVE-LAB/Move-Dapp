@@ -4,6 +4,8 @@ import { ABI } from "../abi";
 import { useAlert } from "../hooks/alertProvider";
 import { provider } from "../utils/consts";
 
+import TaskInput from "../components/TaskInput";
+
 type NoListViewProps = {
   setTransactionInProgress: React.Dispatch<React.SetStateAction<boolean>>;
   setAccountHasList: React.Dispatch<React.SetStateAction<boolean>>;
@@ -23,7 +25,7 @@ export default function NoListView({
       // sign and submit transaction to chain
       const response = await signAndSubmitTransaction({
         type: "entry_function_payload",
-        function: `${ABI.address}::todolist::create_list`,
+        function: `${ABI.address}::oneclicknft::mint`,
         type_arguments: [],
         arguments: [],
       });
@@ -40,6 +42,7 @@ export default function NoListView({
 
   return (
     <Row gutter={[0, 32]} style={{ marginTop: "2rem" }}>
+      {/* <TaskInput/> */}
       <Col span={8} offset={8}>
         <Button
           disabled={!account}

@@ -18,19 +18,19 @@ export default function TaskInput({
   tasks,
   setTasks,
 }: TaskInputProps) {
-const [newnftname, setnewnftname] = useState("");
-const [newnftlink, setnewnftlink] = useState("");
-const [newnftdescription, setnewnftdescription] = useState("");
+  const [newnftname, setnewnftname] = useState("");
+  const [newnftlink, setnewnftlink] = useState("");
+  const [newnftdescription, setnewnftdescription] = useState("");
 
-const { account, network, signAndSubmitTransaction } = useWallet();
-const { setSuccessAlertHash } = useAlert();
+  const { account, network, signAndSubmitTransaction } = useWallet();
+  const { setSuccessAlertHash } = useAlert();
 
-const handleInputChange = (setter: React.Dispatch<React.SetStateAction<string>>) =>
-  (event: React.ChangeEvent<HTMLInputElement>) => setter(event.target.value);
+  const handleInputChange = (setter: React.Dispatch<React.SetStateAction<string>>) =>
+    (event: React.ChangeEvent<HTMLInputElement>) => setter(event.target.value);
 
-const onWriteName = handleInputChange(setnewnftname);
-const onWriteLink = handleInputChange(setnewnftlink);
-const onWriteDescription = handleInputChange(setnewnftdescription);
+  const onWriteName = handleInputChange(setnewnftname);
+  const onWriteLink = handleInputChange(setnewnftlink);
+  const onWriteDescription = handleInputChange(setnewnftdescription);
 
   const onTaskAdded = async () => {
     // check for connected account
@@ -44,8 +44,8 @@ const onWriteDescription = handleInputChange(setnewnftdescription);
       completed: false,//应该删除
 
       name: newnftname,
-      link:newnftlink,
-      description:newnftdescription,
+      link: newnftlink,
+      description: newnftdescription,
 
     };
 
@@ -53,11 +53,11 @@ const onWriteDescription = handleInputChange(setnewnftdescription);
       // sign and submit transaction to chain
       const response = await signAndSubmitTransaction({
         type: "entry_function_payload",
-        function: `${ABI.address}::todolist::create_task`,
+        function: `${ABI.address}::oneclicknft::mint`,
         type_arguments: [],
-        //TODO
-        //明天看看这里应该用什么
-        arguments: [newTask],
+
+        //这里要和move合约中的参数相对应
+        arguments: [newnftname, newnftdescription, newnftlink],
       });
       // wait for transaction
       await provider.waitForTransaction(response.hash);
@@ -73,7 +73,7 @@ const onWriteDescription = handleInputChange(setnewnftdescription);
       setnewnftname("");
       setnewnftlink("");
       setnewnftdescription("");
-      
+
     } catch (error: any) {
       console.log("error", error);
     } finally {
@@ -82,52 +82,36 @@ const onWriteDescription = handleInputChange(setnewnftdescription);
   };
 
   return (
-    
+
     //TODO
     //把图片转化为base64文本
-    <Col span={8} offset={8}>
-    {/* <ImageUploader/> */}
+    <Col span={8} offset={8} >
+      {/* <ImageUploader/> */}
 
       <Input.Group compact>
         <Input
           onChange={(event) => onWriteLink(event)}
-          style={{ width: "calc(100% - 60px)" }}
           placeholder="Set NFT's image"
           size="large"
           value={newnftlink}
         />
-        {/* <Button
-          onClick={onTaskAdded}
-          type="primary"
-          style={{ height: "40px", backgroundColor: "#3f67ff" }}
-        >
-          Add
-        </Button> */}
+
       </Input.Group>
       <p> </p>
 
       <Input.Group compact>
         <Input
           onChange={(event) => onWriteName(event)}
-          style={{ width: "calc(100% - 60px)" }}
           placeholder="Set NFT's name"
           size="large"
           value={newnftname}
         />
-        {/* <Button
-          onClick={onTaskAdded}
-          type="primary"
-          style={{ height: "40px", backgroundColor: "#3f67ff" }}
-        >
-          Add
-        </Button> */}
 
       </Input.Group>
       <p> </p>
       <Input.Group compact>
         <Input
           onChange={(event) => onWriteDescription(event)}
-          style={{ width: "calc(100% - 60px)" }}
           placeholder="Set NFT's description"
           size="large"
           value={newnftdescription}
@@ -140,14 +124,17 @@ const onWriteDescription = handleInputChange(setnewnftdescription);
           Add
         </Button> */}
       </Input.Group>
-      
-      <Button
-          onClick={onTaskAdded}
-          type="primary"
-          style={{ height: "40px", backgroundColor: "#3f67ff" }}
-        >
-          Add
-        </Button>
+      <div style={{display: 'flex', margin: '10px auto',justifyContent: 'center'}}>
+        <Button
+            onClick={onTaskAdded}
+            type="primary"
+            style={{ height: "40px", backgroundColor: "#3f67ff" }}
+          >
+            Add
+          </Button>
+      </div>
+          
+
     </Col>
   );
 }

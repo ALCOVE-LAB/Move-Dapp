@@ -40,18 +40,18 @@ export default function Content() {
 
   return (
     <Spin spinning={transactionInProgress}>
-      {!accountHasList ? (
+      {/* {!accountHasList ? (
         <NoListView
           setTransactionInProgress={setTransactionInProgress}
           setAccountHasList={setAccountHasList}
         />
-      ) : (
+      ) : ( */}
         <ListView
           setTransactionInProgress={setTransactionInProgress}
           tasks={tasks}
           setTasks={setTasks}
         />
-      )}
+      {/* )} */}
     </Spin>
   );
 }

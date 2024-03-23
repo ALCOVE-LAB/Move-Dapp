@@ -1,39 +1,43 @@
 export const ABI = {
     "address": "0x770381698147286b87c506c65c8e982e1f0199d071dba987a0daee8f79c663a7",
-    "name": "todolist",
+    "name": "oneclicknft",
     "friends": [],
     "exposed_functions": [
       {
-        "name": "complete_task",
+        "name": "burn",
+        "visibility": "private",
+        "is_entry": true,
+        "is_view": false,
+        "generic_type_params": [],
+        "params": [
+          "&signer",
+          "0x1::object::Object<0x770381698147286b87c506c65c8e982e1f0199d071dba987a0daee8f79c663a7::oneclicknft::Content>"
+        ],
+        "return": []
+      },
+      {
+        "name": "get_content",
+        "visibility": "public",
+        "is_entry": false,
+        "is_view": true,
+        "generic_type_params": [],
+        "params": [
+          "0x1::object::Object<0x770381698147286b87c506c65c8e982e1f0199d071dba987a0daee8f79c663a7::oneclicknft::Content>"
+        ],
+        "return": [
+          "0x770381698147286b87c506c65c8e982e1f0199d071dba987a0daee8f79c663a7::oneclicknft::Content"
+        ]
+      },
+      {
+        "name": "mint",
         "visibility": "public",
         "is_entry": true,
         "is_view": false,
         "generic_type_params": [],
         "params": [
           "&signer",
-          "u64"
-        ],
-        "return": []
-      },
-      {
-        "name": "create_list",
-        "visibility": "public",
-        "is_entry": true,
-        "is_view": false,
-        "generic_type_params": [],
-        "params": [
-          "&signer"
-        ],
-        "return": []
-      },
-      {
-        "name": "create_task",
-        "visibility": "public",
-        "is_entry": true,
-        "is_view": false,
-        "generic_type_params": [],
-        "params": [
-          "&signer",
+          "0x1::string::String",
+          "0x1::string::String",
           "0x1::string::String"
         ],
         "return": []
@@ -41,31 +45,30 @@ export const ABI = {
     ],
     "structs": [
       {
-        "name": "Task",
+        "name": "BurnEvent",
         "is_native": false,
         "abilities": [
-          "copy",
           "drop",
           "store"
         ],
         "generic_type_params": [],
         "fields": [
           {
-            "name": "address",
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "name": "token_id",
             "type": "address"
           },
           {
             "name": "content",
-            "type": "0x1::string::String"
-          },
-          {
-            "name": "completed",
-            "type": "bool"
+            "type": "0x770381698147286b87c506c65c8e982e1f0199d071dba987a0daee8f79c663a7::oneclicknft::Content"
           }
         ]
       },
       {
-        "name": "TodoList",
+        "name": "CollectionRefsStore",
         "is_native": false,
         "abilities": [
           "key"
@@ -73,16 +76,125 @@ export const ABI = {
         "generic_type_params": [],
         "fields": [
           {
-            "name": "tasks",
-            "type": "vector<0x770381698147286b87c506c65c8e982e1f0199d071dba987a0daee8f79c663a7::todolist::Task>"
+            "name": "mutator_ref",
+            "type": "0x4::collection::MutatorRef"
+          }
+        ]
+      },
+      {
+        "name": "Content",
+        "is_native": false,
+        "abilities": [
+          "drop",
+          "store",
+          "key"
+        ],
+        "generic_type_params": [],
+        "fields": [
+          {
+            "name": "name",
+            "type": "0x1::string::String"
           },
           {
-            "name": "set_task_event",
-            "type": "0x1::event::EventHandle<0x770381698147286b87c506c65c8e982e1f0199d071dba987a0daee8f79c663a7::todolist::Task>"
+            "name": "link",
+            "type": "0x1::string::String"
+          },
+          {
+            "name": "description",
+            "type": "0x1::string::String"
+          }
+        ]
+      },
+      {
+        "name": "MintEvent",
+        "is_native": false,
+        "abilities": [
+          "drop",
+          "store"
+        ],
+        "generic_type_params": [],
+        "fields": [
+          {
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "name": "token_id",
+            "type": "address"
+          },
+          {
+            "name": "content",
+            "type": "0x770381698147286b87c506c65c8e982e1f0199d071dba987a0daee8f79c663a7::oneclicknft::Content"
+          }
+        ]
+      },
+      {
+        "name": "ResourceCap",
+        "is_native": false,
+        "abilities": [
+          "key"
+        ],
+        "generic_type_params": [],
+        "fields": [
+          {
+            "name": "cap",
+            "type": "0x1::account::SignerCapability"
+          }
+        ]
+      },
+      {
+        "name": "SetContentEvent",
+        "is_native": false,
+        "abilities": [
+          "drop",
+          "store"
+        ],
+        "generic_type_params": [],
+        "fields": [
+          {
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "name": "token_id",
+            "type": "address"
+          },
+          {
+            "name": "old_content",
+            "type": "0x770381698147286b87c506c65c8e982e1f0199d071dba987a0daee8f79c663a7::oneclicknft::Content"
+          },
+          {
+            "name": "new_content",
+            "type": "0x770381698147286b87c506c65c8e982e1f0199d071dba987a0daee8f79c663a7::oneclicknft::Content"
+          }
+        ]
+      },
+      {
+        "name": "TokenRefsStore",
+        "is_native": false,
+        "abilities": [
+          "key"
+        ],
+        "generic_type_params": [],
+        "fields": [
+          {
+            "name": "mutator_ref",
+            "type": "0x4::token::MutatorRef"
+          },
+          {
+            "name": "burn_ref",
+            "type": "0x4::token::BurnRef"
+          },
+          {
+            "name": "extend_ref",
+            "type": "0x1::object::ExtendRef"
+          },
+          {
+            "name": "transfer_ref",
+            "type": "0x1::option::Option<0x1::object::TransferRef>"
           }
         ]
       }
     ]
   } as const
-
-
+  
